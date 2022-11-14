@@ -1,1 +1,3 @@
 import Receiver
+
+Receiver.Recive()
