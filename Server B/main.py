@@ -1,3 +1,2 @@
 import Receiver
-
-Receiver.Recive()
+import EmialSender
