@@ -7,7 +7,6 @@ USER = "amiruhd"
 PASSWORD = "AVNS_UuA7JoUFI9_DThIv7Ds"
 DATABASE = "defaultdb"
 
-
 mydb = mysql.connector.connect(
   host=HOST,
   port=PORT,
@@ -15,29 +14,27 @@ mydb = mysql.connector.connect(
   password=PASSWORD,
   database=DATABASE
 )
-
 mycursor = mydb.cursor()
 
 def insert(d, e, s, c):
     sql = "INSERT INTO Advertising (description_, email, state, category) values (%s, %s, %s, %s)"
-    valus= (d, e, s, c)
+    valus = (d, e, s, c)
     mycursor.execute(sql, valus)
     mydb.commit()
+    getid(d)
 
-#sql = "INSERT INTO Advertising (description_, email, state, category) values (%s, %s, %s, %s)"
-#val = ("Michelle", "Blue Village", "Dsfds", "dsfsd")
-#mycursor.execute(sql, val)
-#mydb.commit()
-print(mydb)
 
-#mycursor.execute("SHOW TABLES")
-#insert("aaa", "sdf", "asd", "asd")
+def getid(d):
+    mycursor2 = mydb.cursor()
+    sql2 = "SELECT id FROM  Advertising WHERE description_ = %s"
+    mycursor2.execute(sql2, (d,))
+    test = mycursor2.fetchone()
+    print(test[0])
+    return test[0]
 
-#mycursor.execute("SELECT * FROM  Advertising")
-
-#sql = "DELETE FROM Advertising WHERE id = '1'"
-#mycursor.execute(sql)
-#mydb.commit()
-
-#for x in mycursor:
-#    print(x)
+def show_all_tables():
+    mycursor3 = mydb.cursor()
+    mycursor3.execute("SELECT * FROM Advertising")
+    t = mycursor3.fetchall()
+    for x in t:
+        print(x)
