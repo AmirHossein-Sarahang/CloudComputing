@@ -16,9 +16,9 @@ mydb = mysql.connector.connect(
 )
 mycursor = mydb.cursor()
 
-def insert(d, e, s, c):
-    sql = "INSERT INTO Advertising (description_, email, state, category) values (%s, %s, %s, %s)"
-    valus = (d, e, s, c)
+def insert(d, e, s):
+    sql = "INSERT INTO Advertising (description_, email, state) values (%s, %s, %s)"
+    valus = (d, e, s)
     mycursor.execute(sql, valus)
     mydb.commit()
     getid(d)
