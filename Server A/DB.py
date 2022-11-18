@@ -16,25 +16,33 @@ mydb = mysql.connector.connect(
 )
 mycursor = mydb.cursor()
 
-def insert(d, e, s):
+def insert(d, e):
     sql = "INSERT INTO Advertising (description_, email, state) values (%s, %s, %s)"
-    valus = (d, e, s)
+    valus = (d, e, "Pending")
     mycursor.execute(sql, valus)
     mydb.commit()
     getid(d)
 
 
 def getid(d):
-    mycursor2 = mydb.cursor()
-    sql2 = "SELECT id FROM  Advertising WHERE description_ = %s"
-    mycursor2.execute(sql2, (d,))
-    test = mycursor2.fetchone()
+    sql = "SELECT id FROM  Advertising WHERE description_ = %s"
+    mycursor.execute(sql, (d,))
+    test = mycursor.fetchone()
     print(test[0])
+    mycursor.reset()
     return test[0]
 
 def show_all_tables():
-    mycursor3 = mydb.cursor()
-    mycursor3.execute("SELECT * FROM Advertising")
-    t = mycursor3.fetchall()
+    mycursor.execute("SELECT * FROM Advertising")
+    t = mycursor.fetchall()
+    mycursor.reset()
     for x in t:
         print(x)
+
+def showstate(i):
+    sql = "SELECT state FROM  Advertising WHERE id = %s"
+    mycursor.execute(sql, (i,))
+    test = mycursor.fetchone()
+    mycursor.reset
+    print(test[0])
+    return test[0]
