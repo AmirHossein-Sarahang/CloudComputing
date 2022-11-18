@@ -16,10 +16,24 @@ mydb = mysql.connector.connect(
 )
 mycursor = mydb.cursor()
 
-def getid(i):
-    mycursor2 = mydb.cursor()
-    sql2 = "SELECT email FROM  Advertising WHERE id = %s"
-    mycursor2.execute(sql2, (i,))
-    test = mycursor2.fetchone()
+def getid(d):
+    sql = "SELECT id FROM  Advertising WHERE description_ = %s"
+    mycursor.execute(sql, (d,))
+    test = mycursor.fetchone()
     print(test[0])
+    mycursor.reset()
     return test[0]
+
+def setstate(id, b):
+    value = id
+    try:
+        if b:
+            sql = "UPDATE Advertising SET state = 'Accepted' WHERE id = %s"
+        else:
+            sql = "UPDATE Advertising SET state = 'Rejected' WHERE id = %s"
+        mycursor.execute(sql, (value,))
+        mydb.commit()
+        mycursor.fetchone()
+        mycursor.reset()
+    except e:
+        print("Error in set state!")
