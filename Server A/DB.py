@@ -19,7 +19,7 @@ mycursor = mydb.cursor()
 def insert(d, e, u):
     try:
         sql = "INSERT INTO Advertising (description_, email, state, ImageUrl) values (%s, %s, %s, %s)"
-        valus = (d, e, "Pending",u)
+        valus = (d, e, "Pending", u)
         mycursor.execute(sql, valus)
         mydb.commit()
         mycursor.reset()
@@ -29,24 +29,35 @@ def insert(d, e, u):
 
 
 def getid(d):
-    sql = "SELECT id FROM  Advertising WHERE description_ = %s"
-    mycursor.execute(sql, (d,))
-    test = mycursor.fetchone()
-    print(test[0])
-    mycursor.reset()
-    return test[0]
+    try:
+        sql = "SELECT id FROM  Advertising WHERE description_ = %s"
+        mycursor.execute(sql, (d,))
+        test = mycursor.fetchone()
+        print(test[0])
+        mycursor.reset()
+        return test[0]
+    except:
+        print("Unknown error in returning ID!")
+
 
 def show_all_tables():
-    mycursor.execute("SELECT * FROM Advertising")
-    t = mycursor.fetchall()
-    mycursor.reset()
-    for x in t:
-        print(x)
+    try:
+        mycursor.execute("SELECT * FROM Advertising")
+        t = mycursor.fetchall()
+        mycursor.reset()
+        for x in t:
+            print(x)
+    except:
+        print("Unknown error in show_all_tables!")
+
 
 def showstate(i):
-    sql = "SELECT state FROM  Advertising WHERE id = %s"
-    mycursor.execute(sql, (i,))
-    test = mycursor.fetchone()
-    mycursor.reset
-    print(test[0])
-    return test[0]
+    try:
+        sql = "SELECT state FROM  Advertising WHERE id = %s"
+        mycursor.execute(sql, (i,))
+        test = mycursor.fetchone()
+        mycursor.reset
+        print(test[0])
+        return test[0]
+    except:
+        print("Unknown error in show state!")
