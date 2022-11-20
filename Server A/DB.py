@@ -16,12 +16,16 @@ mydb = mysql.connector.connect(
 )
 mycursor = mydb.cursor()
 
-def insert(d, e):
-    sql = "INSERT INTO Advertising (description_, email, state) values (%s, %s, %s)"
-    valus = (d, e, "Pending")
-    mycursor.execute(sql, valus)
-    mydb.commit()
-    getid(d)
+def insert(d, e, u):
+    try:
+        sql = "INSERT INTO Advertising (description_, email, state, ImageUrl) values (%s, %s, %s, %s)"
+        valus = (d, e, "Pending",u)
+        mycursor.execute(sql, valus)
+        mydb.commit()
+        mycursor.reset()
+        getid(d)
+    except:
+        print("Error registering information! please try again later")
 
 
 def getid(d):
