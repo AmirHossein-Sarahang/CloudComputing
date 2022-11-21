@@ -39,7 +39,7 @@ def Get_id(d):
         print("Unknown error in returning ID!")
 
 
-def show_all_tables():
+def ShowAllTables():
     try:
         mycursor.execute("SELECT * FROM Advertising")
         t = mycursor.fetchall()
@@ -50,7 +50,7 @@ def show_all_tables():
         print("Unknown error in show_all_tables!")
 
 
-def showstate(i):
+def ShowState(i):
     try:
         sql = "SELECT state FROM  Advertising WHERE id = %s"
         mycursor.execute(sql, (i,))
