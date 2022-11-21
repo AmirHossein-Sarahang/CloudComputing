@@ -55,8 +55,7 @@ def ShowState(i):
         sql = "SELECT state FROM  Advertising WHERE id = %s"
         mycursor.execute(sql, (i,))
         test = mycursor.fetchone()
-        mycursor.reset
+        mycursor.reset()
         print(test[0])
-        return test[0]
     except():
         print("Unknown error in show state!")
