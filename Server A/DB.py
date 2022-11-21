@@ -24,7 +24,7 @@ def Insert(d, e, u):
         mydb.commit()
         mycursor.reset()
         return getid(d)
-    except:
+    except():
         print("Error registering information! please try again later")
 
 
@@ -35,7 +35,7 @@ def Get_id(d):
         test = mycursor.fetchone()
         mycursor.reset()
         return test[0]
-    except:
+    except():
         print("Unknown error in returning ID!")
 
 
@@ -46,7 +46,7 @@ def show_all_tables():
         mycursor.reset()
         for x in t:
             print(x)
-    except:
+    except():
         print("Unknown error in show_all_tables!")
 
 
@@ -58,5 +58,5 @@ def showstate(i):
         mycursor.reset
         print(test[0])
         return test[0]
-    except:
+    except():
         print("Unknown error in show state!")
