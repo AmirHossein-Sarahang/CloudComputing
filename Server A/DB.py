@@ -23,7 +23,7 @@ def Insert(d, e, u):
         mycursor.execute(sql, valus)
         mydb.commit()
         mycursor.reset()
-        return getid(d)
+        return Get_id(d)
     except():
         print("Error registering information! please try again later")
 
@@ -56,6 +56,6 @@ def ShowState(i):
         mycursor.execute(sql, (i,))
         test = mycursor.fetchone()
         mycursor.reset()
-        print(test[0])
+        return test[0]
     except():
         print("Unknown error in show state!")
