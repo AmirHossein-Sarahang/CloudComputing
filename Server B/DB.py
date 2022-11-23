@@ -37,3 +37,17 @@ def setstate(id, b):
         mycursor.reset()
     except():
         print("Error in set state!")
+
+def Showstate(i):
+    sql = "SELECT state FROM  Advertising WHERE id = %s"
+    mycursor.execute(sql, (i,))
+    test = mycursor.fetchone()
+    mycursor.reset()
+    return test[0]
+
+def GetUrl(i):
+    sql = "SELECT ImageUrl FROM  Advertising WHERE id = %s"
+    mycursor.execute(sql, (i,))
+    test = mycursor.fetchone()
+    mycursor.reset()
+    return test[0]
