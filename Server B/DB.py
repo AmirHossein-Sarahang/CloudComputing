@@ -35,5 +35,5 @@ def setstate(id, b):
         mydb.commit()
         mycursor.fetchone()
         mycursor.reset()
-    except e:
+    except():
         print("Error in set state!")
