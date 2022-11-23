@@ -1,40 +1,28 @@
-from fastapi import FastAPI, Form
-from pydantic import BaseModel
 import DB
 import Sender
 import requests
-import json
+import shutil
+from fastapi import FastAPI, File, UploadFile, Form
 
 app = FastAPI()
 
-class adv(BaseModel):
-    URL: str
-    Email: str
-    Description: str
-
-class id_(BaseModel):
-    ID: str
-
-
 @app.post("/POST/")
-async def login(ad: adv):
+async def handle_post(file: UploadFile = File(), Email: str = Form(), Description: str = Form(),URL: str = Form()):
     try:
-        id = DB.Insert(ad.Description, ad.Email, ad.URL)
+        id = DB.Insert(Description, Email, URL)
         if Sender.SendMessage(str(id)):
             s = "Your ad was registered with ID : "
             s += str(id)
             return s
-        else:
-            if Sender.SendMessage(str(id)):
-                s = "Your ad was registered in 2nd try with ID : "
-                s += str(id)
-                return s
-    except():
-        return "Error in inserting Data or Send id to Server B!"
+        s = "./data/"
+        s += file.filename
 
+        with open(s, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+
+    except():
+        print()
 
 @app.get("/GET/")
-async def login(i: id_):
-    s = "Your ad state : "
-    s += str(DB.ShowState(i.ID))
-    return s
+async def handle_post(id: str = Form()):
+    return DB.ShowState(id)
