@@ -22,7 +22,9 @@ def Upload_to_s3(address, ID):
 
     bucket = s3_resource.Bucket(bucketName)
     file_path = address
-    object_name = ID
+    on = str(ID)
+    on += ".jpg"
+    object_name = on
     with open(file_path, "rb") as file:
         bucket.put_object(
             ACL='public',

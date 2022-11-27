@@ -50,12 +50,3 @@ def ShowAllTables():
         print("Unknown error in show_all_tables!")
 
 
-def ShowState(i):
-    try:
-        sql = "SELECT state FROM  Advertising WHERE id = %s"
-        mycursor.execute(sql, (i,))
-        test = mycursor.fetchone()
-        mycursor.reset()
-        return test[0]
-    except():
-        print("Unknown error in show state!")

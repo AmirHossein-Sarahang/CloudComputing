@@ -4,7 +4,7 @@ import requests
 import shutil
 import S3DB
 from fastapi import FastAPI, File, UploadFile, Form
-
+import DB2ndConection
 app = FastAPI()
 
 @app.post("/POST/")
@@ -28,5 +28,5 @@ async def handle_post(file: UploadFile = File(), Email: str = Form(), Descriptio
 
 @app.get("/GET/")
 async def handle_post(id: str = Form()):
-    return DB.ShowState(id)
+    return DB2ndConection.ShowState(id)
 
