@@ -46,8 +46,23 @@ def Showstate(i):
     return test[0]
 
 def GetUrl(i):
-    sql = "SELECT ImageUrl FROM  Advertising WHERE id = %s"
-    mycursor.execute(sql, (i,))
-    test = mycursor.fetchone()
-    mycursor.reset()
-    return test[0]
+    mycursor3 = mydb.cursor()
+    sql = "SELECT ImageUrl, email FROM  Advertising WHERE id = %s"
+    mycursor3.execute(sql, (i,))
+    test = mycursor3.fetchone()
+    url = test[0]
+    em = test[1]
+    mycursor3.reset()
+    return test
+
+
+def SetCategory(i, c):
+    value = (c, i)
+    if c == False:
+        print()
+    else:
+        sql = "UPDATE Advertising SET Category = %s WHERE id = %s"
+        mycursor.execute(sql, value)
+        mydb.commit()
+        mycursor.fetchone()
+        mycursor.reset()
