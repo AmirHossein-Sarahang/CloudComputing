@@ -1,10 +1,10 @@
 import mysql.connector
 
 
-HOST = "mysql-2c36314c-mr-b049.aivencloud.com"
+HOST = ""
 PORT = 19774
-USER = "amiruhd"
-PASSWORD = "AVNS_UuA7JoUFI9_DThIv7Ds"
+USER = ""
+PASSWORD ""
 DATABASE = "defaultdb"
 
 mydb = mysql.connector.connect(
