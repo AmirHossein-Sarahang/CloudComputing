@@ -6,9 +6,8 @@ import pika
 import sys
 
 import S3DB
-#amqps://dfphuyyq:4FzUTXTxXZ5w3A20MRD3c6IIqTrOz4ZT@hawk.rmq.cloudamqp.com/dfphuyyq
 
-AMQP_URL = "amqps://gyjulrsw:MzcT8naV6UtpQX05P_1HMBTKDQNX_2ig@beaver.rmq.cloudamqp.com/gyjulrsw"
+AMQP_URL = ""
 def MainHandler(i):
     test = DB.GetUrl(i)
     result_image = ImageProcess.main(test[0])
