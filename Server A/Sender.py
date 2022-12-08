@@ -1,5 +1,5 @@
 import pika
-AMQP_URL = "amqps://gyjulrsw:MzcT8naV6UtpQX05P_1HMBTKDQNX_2ig@beaver.rmq.cloudamqp.com/gyjulrsw"
+AMQP_URL = ""
 
 def SendMessage(Message):
     try:
